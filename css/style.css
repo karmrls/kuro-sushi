@@ -17,7 +17,7 @@ body {
     background-color: #121212; /* Color de respaldo */
     
     /* El truco: Una capa de opacidad oscura (0.85) sobre la imagen para que siga siendo sutil */
-    background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('assets/fondo-dragon.jpg');
+    background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('../assets/fondo-dragon.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
