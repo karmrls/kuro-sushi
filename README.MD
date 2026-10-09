@@ -9,7 +9,7 @@
 
 Una landing page y sistema de pedidos interactivo de alta gama para un restaurante de sushi, desarrollada con **Vanilla JavaScript, CSS3 moderno y HTML5**. Diseñada con un enfoque estético minimalista, modo oscuro y optimización total para dispositivos móviles.
 
-[🔗 Ver Demo en Vivo](#) *(Opcional: Añade el enlace de GitHub Pages aquí)*
+[🔗 Ver Demo en Vivo](https://karmrls.github.io/kuro-sushi/)(#) *(Opcional: Añade el enlace de GitHub Pages aquí)*
 
 </div>
 
