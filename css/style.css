@@ -1,0 +1,837 @@
+/* Variables y Reseteo */
+:root {
+    --bg-dark: #121212;
+    --text-light: #f5f5f5;
+    --accent-red: #e63946;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif; /* Tipografía limpia y legible */
+}
+
+body {
+    background-color: #121212; /* Color de respaldo */
+    
+    /* El truco: Una capa de opacidad oscura (0.85) sobre la imagen para que siga siendo sutil */
+    background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('../assets/fondo-dragon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Se queda fija mientras haces scroll */
+    
+    color: var(--text-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: var(--bg-dark);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-family: 'Shojumaru', sans-serif;
+    font-size: 1.8rem; /* Aumentado ligeramente para que la fuente luzca bien */
+    font-weight: normal; /* Shojumaru ya tiene buen grosor natural */
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-red);
+    font-family: 'Shojumaru', sans-serif; /* Asegura que la palabra Sushi mantenga el estilo */
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:active {
+    transform: scale(0.9);
+}
+
+/* Menú Desplegable (Estructura y posición) */
+.nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    
+    /* --- AQUÍ ESTÁ EL CAMBIO PARA EL EFECTO TRANSLÚCIDO --- */
+    background: rgba(18, 18, 18, 0.75); /* Oscuro pero al 75% de opacidad */
+    backdrop-filter: blur(12px); /* Aplica el desenfoque a lo que está detrás */
+    -webkit-backdrop-filter: blur(12px); /* Soporte necesario para iPhone/Safari */
+    /* ------------------------------------------------------ */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    transition: right 0.4s ease-in-out;
+    z-index: 99;
+}
+
+.nav-links.active {
+    right: 0;
+}
+
+/* --- ENLACES DEL MENÚ DESPLEGABLE (Nuevo estilo japonés) --- */
+.nav-links a {
+    font-family: 'Shojumaru', sans-serif; 
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.8rem; 
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Línea decorativa inferior (oculta por defecto) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-red);
+    transition: width 0.3s ease;
+}
+
+/* Efecto al pasar el cursor o pulsar */
+.nav-links a:hover, 
+.nav-links a:active {
+    color: var(--accent-red);
+    transform: scale(1.1); 
+    text-shadow: 0 0 15px rgba(230, 57, 70, 0.4); 
+}
+
+/* La línea roja se expande desde el centro hacia los lados */
+.nav-links a:hover::after,
+.nav-links a:active::after {
+    width: 100%; 
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: 50px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin-bottom: 40px;
+}
+
+/* --- BOTÓN: DISEÑO Y FUENTE --- */
+.btn-primary {
+    font-family: 'Shojumaru', sans-serif; /* Aplica la misma fuente al botón */
+    display: inline-block;
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--text-light);
+    text-decoration: none;
+    border: 2px solid var(--accent-red);
+    border-radius: 30px;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden; /* Oculta el fondo animado que sale de los bordes */
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+/* --- BOTÓN: ANIMACIÓN DE FONDO (El color entra desde la izquierda) --- */
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--accent-red);
+    transition: all 0.4s ease;
+    z-index: -1; /* Mantiene el fondo detrás del texto */
+}
+
+/* --- BOTÓN: HOVER (Al pasar el mouse) --- */
+.btn-primary:hover {
+    color: #ffffff; /* Asegura que el texto se lea bien */
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.6); /* Resplandor rojo neón */
+    transform: translateY(-4px); /* El botón levita un poco */
+}
+
+.btn-primary:hover::before {
+    width: 100%; /* El fondo rojo llena todo el botón */
+}
+
+/* --- BOTÓN: ACTIVE (Al hacer clic) --- */
+.btn-primary:active {
+    transform: translateY(2px) scale(0.95); /* Se hunde ligeramente */
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+}
+
+/* Sección de Contacto */
+.contact-section {
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.phone-number {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Íconos Sociales */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Colores de marca al presionar/hover */
+.social-btn.ig:active, .social-btn.ig:hover { background: #E1306C; }
+.social-btn.wa:active, .social-btn.wa:hover { background: #25D366; }
+.social-btn.fb:active, .social-btn.fb:hover { background: #1877F2; }
+
+.social-btn:active {
+    transform: scale(0.85);
+}
+
+/* Animaciones de Entrada (Intersection Observer en JS) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ESTILOS DEL HERO Y TEXTO CENTRAL --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden; /* Evita que los sushis salgan de la pantalla */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10; /* Mantiene el texto por encima de las imágenes */
+}
+
+/* --- TÍTULO CON LETRA JAPONESA --- */
+.main-title {
+    font-family: 'Shojumaru', sans-serif;
+    font-size: 4.5rem;
+    color: var(--text-light);
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.5s forwards;
+}
+
+.main-title span {
+    color: var(--accent-red);
+    font-family: 'Shojumaru', sans-serif; /* Aplica la fuente directamente a la palabra Sushi */
+}
+.subtitle {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.7s forwards;
+}
+
+/* --- ESTILOS DE LOS SUSHIS EN 3D --- */
+.floating-sushi {
+    position: absolute;
+    z-index: 5;
+    /* La sombra le da el toque realista 3D sobre el fondo oscuro */
+    filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.8)); 
+}
+
+.sushi-left {
+    width: 200px;
+    top: 25%;
+    left: 10%;
+    opacity: 0;
+    /* Entra de la izquierda y luego se queda flotando */
+    animation: enterLeft 1.2s ease-out forwards, floatLeft 4s ease-in-out infinite 1.2s;
+}
+
+.sushi-right {
+    width: 250px; /* Uno un poco más grande para asimetría */
+    bottom: 20%;
+    right: 8%;
+    opacity: 0;
+    /* Entra de la derecha y luego se queda flotando */
+    animation: enterRight 1.2s ease-out forwards, floatRight 5s ease-in-out infinite 1.2s;
+}
+
+/* --- ANIMACIONES (KEYFRAMES) --- */
+@keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes enterLeft {
+    0% { opacity: 0; transform: translateX(-150px) rotate(-30deg) scale(0.8); }
+    100% { opacity: 1; transform: translateX(0) rotate(-15deg) scale(1); }
+}
+
+@keyframes enterRight {
+    0% { opacity: 0; transform: translateX(150px) rotate(30deg) scale(0.8); }
+    100% { opacity: 1; transform: translateX(0) rotate(20deg) scale(1); }
+}
+
+/* Animaciones de levitación continua */
+@keyframes floatLeft {
+    0%, 100% { transform: translateY(0) rotate(-15deg); }
+    50% { transform: translateY(-20px) rotate(-10deg); }
+}
+
+@keyframes floatRight {
+    0%, 100% { transform: translateY(0) rotate(20deg); }
+    50% { transform: translateY(-25px) rotate(25deg); }
+}
+
+.sushi-bottom-left {
+    width: 180px;
+    bottom: 15%;
+    left: 12%;
+    opacity: 0;
+    /* Usa un retraso de 1.4s para que entre un poco después que los demás */
+    animation: enterLeft 1.4s ease-out forwards, floatRight 4.5s ease-in-out infinite 1.4s;
+}
+
+.ramen-top-right {
+    width: 300px; /* El ramen es un tazón, por lo que debe ser más grande */
+    top: 12%;
+    right: 12%;
+    opacity: 0;
+    /* Usa un retraso de 1.5s y la animación de flotar a la izquierda para variar el movimiento */
+    animation: enterRight 1.5s ease-out forwards, floatLeft 5.5s ease-in-out infinite 1.5s;
+}
+
+/* --- PERSONALIZACIÓN DEL SCROLLBAR --- */
+
+/* Para navegadores Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #fd0000 var(--bg-dark);
+}
+
+/* Para navegadores Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 10px; /* Grosor de la barra */
+}
+
+/* Fondo de la barra (track) */
+::-webkit-scrollbar-track {
+    background: var(--bg-dark); 
+}
+
+/* La barra deslizable (thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: #333333; /* Gris oscuro por defecto */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid var(--bg-dark); /* Crea un pequeño margen entre la barra y el borde */
+}
+
+/* Efecto al pasar el cursor sobre la barra */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-red); /* Cambia al rojo de Kuro Sushi */
+}
+
+/* =========================================
+   ESTILOS DE LA PÁGINA DE MENÚ
+========================================= */
+
+/* Ajusta el padding para que el contenido no quede debajo del navbar */
+.menu-container {
+    padding: 120px 5% 50px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-title {
+    font-family: 'Shojumaru', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+}
+
+.menu-title span {
+    font-family: 'Shojumaru', sans-serif;
+    color: var(--accent-red);
+}
+
+/* Grid de las tarjetas */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+/* Diseño de la tarjeta de Platillo */
+.menu-card {
+    background: rgba(18, 18, 18, 0.75); /* Fondo translúcido */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde súper sutil */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Efecto Hover en la tarjeta */
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+    border-color: rgba(230, 57, 70, 0.5); /* El borde se pinta rojo */
+}
+
+/* Imagen del platillo */
+.card-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 2px solid var(--accent-red);
+}
+
+/* Información dentro de la tarjeta */
+.card-info {
+    padding: 25px;
+}
+
+.card-info h3 {
+    font-family: 'Shojumaru', sans-serif;
+    color: var(--text-light);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.card-info p {
+    color: #aaaaaa;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Fila de precio y botón */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent-red);
+}
+
+.btn-order {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--accent-red);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Shojumaru', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.btn-order:hover {
+    background-color: var(--accent-red);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
+}
+
+/* --- ESTILOS DE LAS PESTAÑAS DE CATEGORÍA --- */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    font-family: 'Shojumaru', sans-serif;
+    color: var(--text-light);
+    background: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+    transform: translateY(-2px);
+}
+
+/* Estilo especial para indicar en qué sección está el usuario */
+.tab-btn.active {
+    background-color: var(--accent-red);
+    color: #ffffff;
+    border-color: var(--accent-red);
+    box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+}
+/* --- ESTILOS DEL CARRITO FLOTANTE --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.cart-toggle:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--accent-red);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+/* Panel Desplegable del Carrito */
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s ease-in-out;
+    padding: 25px;
+}
+
+.cart-drawer.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.cart-header h3 {
+    font-family: 'Shojumaru', sans-serif;
+    font-size: 1.5rem;
+}
+
+.cart-header h3 span {
+    color: var(--accent-red);
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-cart:hover {
+    color: var(--accent-red);
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.empty-cart-msg {
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+    font-style: italic;
+}
+
+/* Elemento individual en el carrito */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cart-item-info h4 {
+    font-family: 'Shojumaru', sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.cart-item-info p {
+    color: var(--accent-red);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.remove-item:hover {
+    color: var(--accent-red);
+}
+
+.cart-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.cart-total span:last-child {
+    color: var(--accent-red);
+}
+
+/* --- ESTILOS DEL FORMULARIO EN EL CARRITO --- */
+.cart-delivery-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Iconos dentro de los inputs */
+.input-group i {
+    position: absolute;
+    left: 15px;
+    color: #777;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    pointer-events: none;
+}
+
+/* Estilos comunes para inputs y select */
+.cart-input, .cart-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px 12px 42px; /* Espacio a la izquierda para el ícono */
+    border-radius: 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    outline: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Personalización del select (flecha limpia) */
+.cart-select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+}
+
+/* Asegurar que las opciones del select tengan fondo oscuro legible */
+.cart-select option {
+    background-color: #121212;
+    color: var(--text-light);
+    padding: 10px;
+}
+
+/* Efecto al hacer foco (clic) en los campos */
+.cart-input:focus, .cart-select:focus {
+    border-color: var(--accent-red);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 12px rgba(230, 57, 70, 0.25);
+}
+
+/* El ícono se pinta de rojo al enfocar el input */
+.input-group:focus-within i {
+    color: var(--accent-red);
+}
+
+/* Color del texto placeholder */
+.cart-input::placeholder {
+    color: #777;
+}
+
+/* --- BOTONES TÁCTILES DE MÉTODO DE ENTREGA --- */
+.delivery-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.delivery-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 10px;
+    border-radius: 12px;
+    color: #888;
+    font-size: 0.8rem;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.delivery-btn i {
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.delivery-btn:hover {
+    border-color: rgba(230, 57, 70, 0.5);
+    color: var(--text-light);
+}
+
+/* Estado Activo (Cuando el usuario selecciona una opción) */
+.delivery-btn.active {
+    background: rgba(230, 57, 70, 0.12);
+    border-color: var(--accent-red);
+    color: var(--text-light);
+    box-shadow: 0 0 12px rgba(230, 57, 70, 0.25);
+}
+
+.delivery-btn.active i {
+    color: var(--accent-red);
+}

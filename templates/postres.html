@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuro Sushi | Postres</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+        <div class="logo">Kuro<span>Sushi</span></div>
+        
+        <!-- Contenedor para alinear el botón del carrito y el menú móvil -->
+        <div class="nav-actions">
+            <!-- Botón del Carrito -->
+            <button class="cart-toggle" id="cart-toggle">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </button>
+            
+            <!-- Botón de Menú Hamburguesa -->
+            <button class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-links" id="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú Principal</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <main class="menu-container">
+        <h1 class="menu-title">Nuestra <span>Carta</span></h1>
+        
+        <!-- Pestañas de Navegación de Categorías -->
+        <div class="category-tabs">
+            <a href="menu.html" class="tab-btn">Platillos</a>
+            <a href="bebidas.html" class="tab-btn">Bebidas</a>
+            <a href="postres.html" class="tab-btn active">Postres</a>
+        </div>
+
+<!-- Cuadrícula de Postres -->
+        <div class="menu-grid">
+            <!-- Postre 1 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="../assets/postre-mochi.jpg" alt="Golden Mochi & Matcha" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Golden Mochi & Matcha</h3>
+                    <p>Auténtico mochi de sésamo negro acompañado de un suave cheesecake de té verde matcha y pan de oro comestible.</p>
+                    <div class="card-footer">
+                        <span class="price">$145 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postre 2 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="../assets/kuro-souffle.jpg" alt="Kuro Obsidian Soufflé" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Kuro Obsidian Soufflé</h3>
+                    <p>Pastel tibio de chocolate oscuro con centro fundente, servido con helado artesanal de sésamo negro y destellos dorados.</p>
+                    <div class="card-footer">
+                        <span class="price">$165 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Postre 3 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="../assets/panna-cotta-sakura.jpg" alt="Sakura White Panna Cotta" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Sakura White Panna Cotta</h3>
+                    <p>Delicada panna cotta de chocolate blanco e infusión de flores de cerezo sakura, acompañada de un fino coulis de frutos rojos.</p>
+                    <div class="card-footer">
+                        <span class="price">$150 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<!-- Contenido principal de tu página (hero, menú o contacto) va aquí... -->
+
+    <!-- PANEL LATERAL DEL CARRITO (Colócalo antes del script) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Tu <span>Pedido</span></h3>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p class="empty-cart-msg">Tu carrito está vacío.</p>
+        </div>
+<div class="cart-footer">
+            <!-- Formulario de entrega estilizado -->
+            <div class="cart-delivery-info">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="client-name" class="cart-input" placeholder="Tu Nombre">
+                </div>
+                
+                <!-- Opciones de entrega táctiles (Comodidad para el pulgar) -->
+                <div class="delivery-options">
+                    <button type="button" class="delivery-btn active" data-value="Recoger en local">
+                        <i class="fa-solid fa-store"></i>
+                        <span>Recoger en sucursal</span>
+                    </button>
+                    <button type="button" class="delivery-btn" data-value="A domicilio">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <span>Envío a domicilio</span>
+                    </button>
+                </div>
+
+                <div class="input-group" id="address-group" style="display: none;">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="client-address" class="cart-input" placeholder="Dirección (Calle, Colonia, Núm)">
+                </div>
+            </div>
+
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0 MXN</span>
+            </div>
+            <button class="btn-primary" id="checkout-btn" style="width: 100%; text-align: center; padding: 12px;">Enviar Pedido por WhatsApp</button>
+        </div>
+
+    <!-- Script principal al final -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
+</html>

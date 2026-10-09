@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuro Sushi | Contacto</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Importación de fuente estilo japonés -->
+    <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header class="navbar">
+        <div class="logo">Kuro<span>Sushi</span></div>
+        
+        <!-- Contenedor para alinear el botón del carrito y el menú móvil -->
+        <div class="nav-actions">
+            <!-- Botón del Carrito -->
+            <button class="cart-toggle" id="cart-toggle">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cart-count">0</span>
+            </button>
+            
+            <!-- Botón de Menú Hamburguesa -->
+            <button class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-links" id="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="menu.html">Menú Principal</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <!-- Contenedor Principal de Contacto -->
+    <main class="menu-container">
+        <h1 class="menu-title">Cont<span>acto</span></h1>
+        
+        <section class="contact-section" style="border-top: none; padding-top: 10px;">
+            <p class="subtitle" style="margin-bottom: 30px; font-family: 'Shojumaru', sans-serif; letter-spacing: 1px; font-size: 1rem;">Estamos listos para atenderte. Conecta con nosotros o realiza tus pedidos.</p>
+            
+            <!-- Teléfono de contacto -->
+            <div class="phone-number">
+                <i class="fa-solid fa-phone" style="color: var(--accent-red);"></i>
+                <span>+52 (618) 000-0000</span>
+            </div>
+
+            <!-- Botones de Redes Sociales con Enlaces Directos -->
+            <div class="social-icons">
+                <!-- WhatsApp -->
+                <a href="https://wa.me/5216180000000" target="_blank" rel="noopener noreferrer" class="social-btn wa" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://instagram.com/bame.eventosdgo" target="_blank" rel="noopener noreferrer" class="social-btn ig" title="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                
+                <!-- Facebook -->
+                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-btn fb" title="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+<!-- Contenido principal de tu página (hero, menú o contacto) va aquí... -->
+
+    <!-- PANEL LATERAL DEL CARRITO (Colócalo antes del script) -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Tu <span>Pedido</span></h3>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <p class="empty-cart-msg">Tu carrito está vacío.</p>
+        </div>
+
+<div class="cart-footer">
+            <!-- Formulario de entrega estilizado -->
+            <div class="cart-delivery-info">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="client-name" class="cart-input" placeholder="Tu Nombre">
+                </div>
+                
+                <!-- Opciones de entrega táctiles (Comodidad para el pulgar) -->
+                <div class="delivery-options">
+                    <button type="button" class="delivery-btn active" data-value="Recoger en local">
+                        <i class="fa-solid fa-store"></i>
+                        <span>Recoger en sucursal</span>
+                    </button>
+                    <button type="button" class="delivery-btn" data-value="A domicilio">
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <span>Envío a domicilio</span>
+                    </button>
+                </div>
+
+                <div class="input-group" id="address-group" style="display: none;">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" id="client-address" class="cart-input" placeholder="Dirección (Calle, Colonia, Núm)">
+                </div>
+            </div>
+
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0 MXN</span>
+            </div>
+            <button class="btn-primary" id="checkout-btn" style="width: 100%; text-align: center; padding: 12px;">Enviar Pedido por WhatsApp</button>
+        </div>
+
+    <!-- Script principal al final -->
+    <script src="../js/main.js"></script>
+</body>
+</html>
+</html>
