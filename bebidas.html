@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuro Sushi | Contacto</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- Importación de fuente estilo japonés -->
+    <title>Kuro Sushi | Bebidas</title>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Shojumaru&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -35,37 +34,63 @@
         <a href="contacto.html">Contacto</a>
     </nav>
 
-    <!-- Contenedor Principal de Contacto -->
     <main class="menu-container">
-        <h1 class="menu-title">Cont<span>acto</span></h1>
+        <h1 class="menu-title">Nuestra <span>Carta</span></h1>
         
-        <section class="contact-section" style="border-top: none; padding-top: 10px;">
-            <p class="subtitle" style="margin-bottom: 30px; font-family: 'Shojumaru', sans-serif; letter-spacing: 1px; font-size: 1rem;">Estamos listos para atenderte. Conecta con nosotros o realiza tus pedidos.</p>
-            
-            <!-- Teléfono de contacto -->
-            <div class="phone-number">
-                <i class="fa-solid fa-phone" style="color: var(--accent-red);"></i>
-                <span>+52 (618) 000-0000</span>
+        <!-- Pestañas de Navegación de Categorías -->
+        <div class="category-tabs">
+            <a href="menu.html" class="tab-btn">Platillos</a>
+            <a href="bebidas.html" class="tab-btn active">Bebidas</a>
+            <a href="postres.html" class="tab-btn">Postres</a>
+        </div>
+
+<!-- Cuadrícula de Bebidas -->
+        <div class="menu-grid">
+            <!-- Bebida 1 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="assets/sake-rojo.jpg" alt="Kuro Crimson Sake" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Kuro Crimson Sake</h3>
+                    <p>Cóctel premium de sake artesanal japonés infundido con flor de hibisco, servido en cristal ahumado oscuro.</p>
+                    <div class="card-footer">
+                        <span class="price">$160 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Botones de Redes Sociales con Enlaces Directos -->
-            <div class="social-icons">
-                <!-- WhatsApp -->
-                <a href="https://wa.me/5216180000000" target="_blank" rel="noopener noreferrer" class="social-btn wa" title="WhatsApp">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-                
-                <!-- Instagram -->
-                <a href="https://instagram.com/bame.eventosdgo" target="_blank" rel="noopener noreferrer" class="social-btn ig" title="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                
-                <!-- Facebook -->
-                <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-btn fb" title="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
+            <!-- Bebida 2 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="assets/matcha-tonic.jpg" alt="Matcha Kuro Tonic" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Matcha Kuro Tonic</h3>
+                    <p>Infusión fría de té matcha ceremonial prémium con un toque vibrante de yuzu fresco y agua tónica artesanal.</p>
+                    <div class="card-footer">
+                        <span class="price">$130 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Bebida 3 -->
+            <div class="menu-card">
+                <div class="card-image">
+                    <img src="assets/yozakura-highball.jpg" alt="Yozakura Plum Highball" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Yozakura Plum Highball</h3>
+                    <p>Whiskey japonés añejo mezclado con licor de ciruela Umeshu, infusión de hoja de shiso oscuro y soda carbonatada.</p>
+                    <div class="card-footer">
+                        <span class="price">$175 MXN</span>
+                        <button class="btn-order">Ordenar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 <!-- Contenido principal de tu página (hero, menú o contacto) va aquí... -->
@@ -79,7 +104,6 @@
         <div class="cart-items" id="cart-items">
             <p class="empty-cart-msg">Tu carrito está vacío.</p>
         </div>
-
 <div class="cart-footer">
             <!-- Formulario de entrega estilizado -->
             <div class="cart-delivery-info">
@@ -114,7 +138,7 @@
         </div>
 
     <!-- Script principal al final -->
-    <script src="../js/main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 </html>
