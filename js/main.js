@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // 1. LÓGICA DEL MENÚ MÓVIL (Con validación)
+    // 1. LÓGICA DEL MENÚ MÓVIL (Con bloqueo de fondo)
     const menuToggle = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
             
             if (navLinks.classList.contains('active')) {
                 if (icon) {
@@ -84,11 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cargar carrito guardado en el navegador (localStorage)
     let cart = JSON.parse(localStorage.getItem('kuro_cart')) || [];
 
-    // Abrir y cerrar el panel lateral del carrito
+    // Abrir y cerrar el panel lateral del carrito con bloqueo de fondo
     if (cartToggle && cartDrawer) {
-        cartToggle.addEventListener('click', () => cartDrawer.classList.add('active'));
+        cartToggle.addEventListener('click', () => {
+            cartDrawer.classList.add('active');
+            document.body.classList.add('no-scroll'); // Bloquea el scroll de la web general
+        });
+
         if (closeCart) {
-            closeCart.addEventListener('click', () => cartDrawer.classList.remove('active'));
+            closeCart.addEventListener('click', () => {
+                cartDrawer.classList.remove('active');
+                document.body.classList.remove('no-scroll'); // Libera el scroll de la web general
+            });
         }
     }
 

@@ -15,13 +15,11 @@
 
 body {
     background-color: #121212; /* Color de respaldo */
-    
-    /* El truco: Una capa de opacidad oscura (0.85) sobre la imagen para que siga siendo sutil */
     background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('../assets/fondo-dragon.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Se queda fija mientras haces scroll */
+    background-attachment: fixed;
     
     color: var(--text-light);
     overflow-x: hidden;
@@ -44,14 +42,14 @@ body {
 
 .logo {
     font-family: 'Shojumaru', sans-serif;
-    font-size: 1.8rem; /* Aumentado ligeramente para que la fuente luzca bien */
-    font-weight: normal; /* Shojumaru ya tiene buen grosor natural */
+    font-size: 1.8rem; 
+    font-weight: normal;
     letter-spacing: 2px;
 }
 
 .logo span {
     color: var(--accent-red);
-    font-family: 'Shojumaru', sans-serif; /* Asegura que la palabra Sushi mantenga el estilo */
+    font-family: 'Shojumaru', sans-serif;
 }
 
 .menu-toggle {
@@ -67,27 +65,24 @@ body {
     transform: scale(0.9);
 }
 
-/* Menú Desplegable (Estructura y posición) */
+/* Menú Desplegable Móvil Adaptativo */
 .nav-links {
     position: fixed;
     top: 70px;
     right: -100%;
     width: 100%;
-    height: calc(100vh - 70px);
-    
-    /* --- AQUÍ ESTÁ EL CAMBIO PARA EL EFECTO TRANSLÚCIDO --- */
-    background: rgba(18, 18, 18, 0.75); /* Oscuro pero al 75% de opacidad */
-    backdrop-filter: blur(12px); /* Aplica el desenfoque a lo que está detrás */
-    -webkit-backdrop-filter: blur(12px); /* Soporte necesario para iPhone/Safari */
-    /* ------------------------------------------------------ */
-    
+    height: calc(100dvh - 70px); /* Altura dinámica real para cualquier celular (S26, Pro Max, etc.) */
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 40px;
-    transition: right 0.4s ease-in-out;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 99;
+    overflow-y: auto;
 }
 
 .nav-links.active {
@@ -591,23 +586,34 @@ body {
     font-weight: bold;
 }
 
-/* Panel Desplegable del Carrito */
+/* --- BLOQUEO TOTAL DEL FONDO CUANDO EL CARRITO ESTÁ ACTIVO --- */
+body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+/* --- PANEL LATERAL DEL CARRITO (Adaptable y con scroll exclusivo) --- */
 .cart-drawer {
     position: fixed;
     top: 0;
     right: -100%;
     width: 100%;
-    max-width: 400px;
-    height: 100vh;
-    background: rgba(18, 18, 18, 0.95);
+    max-width: 420px; /* Ancho máximo ideal para cualquier smartphone moderno */
+    height: 100dvh; /* Altura dinámica real para evitar desbordes con las barras del navegador */
+    background: rgba(18, 18, 18, 0.98);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    transition: right 0.4s ease-in-out;
-    padding: 25px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Garantiza suavidad en dispositivos iOS */
+    padding: 20px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
+    box-sizing: border-box;
 }
 
 .cart-drawer.active {
@@ -628,6 +634,7 @@ body {
 }
 
 .cart-header h3 span {
+    font-family: 'Shojumaru', sans-serif; /* <--- Añade esta línea */
     color: var(--accent-red);
 }
 
