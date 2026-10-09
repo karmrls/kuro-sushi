@@ -284,13 +284,13 @@ body {
 /* --- TÍTULO CON LETRA JAPONESA --- */
 .main-title {
     font-family: 'Shojumaru', sans-serif;
-    font-size: clamp(2.2rem, 7vw, 4.5rem); 
+    font-size: clamp(2rem, 7vw, 4.5rem); 
     color: var(--text-light);
     letter-spacing: 2px;
     margin-bottom: 15px;
     opacity: 0;
     animation: fadeUp 1s ease-out 0.5s forwards;
-    word-break: break-word;
+    white-space: nowrap;
 }
 
 .main-title span {
@@ -369,28 +369,32 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding: 0 15px;
+    }
+
     .sushi-left {
-        width: 110px;
-        top: 18%;
-        left: 3%;
+        width: 200px;
+        top: 14%;
+        left: 2%;
     }
     
     .sushi-right {
-        width: 130px;
-        bottom: 12%;
-        right: 3%;
+        width: 250px; 
+        bottom: 14%;
+        right: 2%;
     }
     
     .sushi-bottom-left {
-        width: 100px;
-        bottom: 8%;
-        left: 5%;
+        width: 260px;
+        bottom: 10%;
+        left: 4%;
     }
     
     .ramen-top-right {
-        width: 150px;
-        top: 12%;
-        right: 3%;
+        width: 290px;
+        top: 9%;
+        right: 1%;
     }
 }
 /* --- PERSONALIZACIÓN DEL SCROLLBAR --- */
