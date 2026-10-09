@@ -135,6 +135,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
     padding: 0 20px;
     margin-top: 50px;
 }
@@ -283,20 +284,21 @@ body {
 /* --- TÍTULO CON LETRA JAPONESA --- */
 .main-title {
     font-family: 'Shojumaru', sans-serif;
-    font-size: 4.5rem;
+    font-size: clamp(2.2rem, 7vw, 4.5rem); 
     color: var(--text-light);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 15px;
     opacity: 0;
     animation: fadeUp 1s ease-out 0.5s forwards;
+    word-break: break-word;
 }
 
 .main-title span {
     color: var(--accent-red);
-    font-family: 'Shojumaru', sans-serif; /* Aplica la fuente directamente a la palabra Sushi */
+    font-family: 'Shojumaru', sans-serif;
 }
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     color: #a0a0a0;
     margin-bottom: 30px;
     opacity: 0;
@@ -307,25 +309,21 @@ body {
 .floating-sushi {
     position: absolute;
     z-index: 5;
-    /* La sombra le da el toque realista 3D sobre el fondo oscuro */
-    filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.8)); 
+    filter: drop-shadow(0px 15px 10px rgba(0, 0, 0, 0.8));
+    pointer-events: none;
 }
 
 .sushi-left {
     width: 200px;
     top: 25%;
     left: 10%;
-    opacity: 0;
-    /* Entra de la izquierda y luego se queda flotando */
     animation: enterLeft 1.2s ease-out forwards, floatLeft 4s ease-in-out infinite 1.2s;
 }
 
 .sushi-right {
-    width: 250px; /* Uno un poco más grande para asimetría */
+    width: 250px;
     bottom: 20%;
     right: 8%;
-    opacity: 0;
-    /* Entra de la derecha y luego se queda flotando */
     animation: enterRight 1.2s ease-out forwards, floatRight 5s ease-in-out infinite 1.2s;
 }
 
@@ -360,20 +358,41 @@ body {
     width: 180px;
     bottom: 15%;
     left: 12%;
-    opacity: 0;
-    /* Usa un retraso de 1.4s para que entre un poco después que los demás */
     animation: enterLeft 1.4s ease-out forwards, floatRight 4.5s ease-in-out infinite 1.4s;
 }
 
 .ramen-top-right {
-    width: 300px; /* El ramen es un tazón, por lo que debe ser más grande */
+    width: 300px;
     top: 12%;
     right: 12%;
-    opacity: 0;
-    /* Usa un retraso de 1.5s y la animación de flotar a la izquierda para variar el movimiento */
     animation: enterRight 1.5s ease-out forwards, floatLeft 5.5s ease-in-out infinite 1.5s;
 }
 
+@media (max-width: 768px) {
+    .sushi-left {
+        width: 110px;
+        top: 18%;
+        left: 3%;
+    }
+    
+    .sushi-right {
+        width: 130px;
+        bottom: 12%;
+        right: 3%;
+    }
+    
+    .sushi-bottom-left {
+        width: 100px;
+        bottom: 8%;
+        left: 5%;
+    }
+    
+    .ramen-top-right {
+        width: 150px;
+        top: 12%;
+        right: 3%;
+    }
+}
 /* --- PERSONALIZACIÓN DEL SCROLLBAR --- */
 
 /* Para navegadores Firefox */
@@ -394,21 +413,18 @@ body {
 
 /* La barra deslizable (thumb) */
 ::-webkit-scrollbar-thumb {
-    background-color: #333333; /* Gris oscuro por defecto */
-    border-radius: 10px; /* Bordes redondeados */
-    border: 2px solid var(--bg-dark); /* Crea un pequeño margen entre la barra y el borde */
+    background-color: #333333; 
+    border-radius: 10px;
+    border: 2px solid var(--bg-dark);
 }
 
 /* Efecto al pasar el cursor sobre la barra */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-red); /* Cambia al rojo de Kuro Sushi */
+    background-color: var(--accent-red);
 }
 
-/* =========================================
-   ESTILOS DE LA PÁGINA DE MENÚ
-========================================= */
+/* ESTILOS DE LA PÁGINA DE MENÚ */
 
-/* Ajusta el padding para que el contenido no quede debajo del navbar */
 .menu-container {
     padding: 120px 5% 50px 5%;
     max-width: 1200px;
@@ -438,20 +454,19 @@ body {
 
 /* Diseño de la tarjeta de Platillo */
 .menu-card {
-    background: rgba(18, 18, 18, 0.75); /* Fondo translúcido */
+    background: rgba(18, 18, 18, 0.75);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Borde súper sutil */
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-/* Efecto Hover en la tarjeta */
 .menu-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
-    border-color: rgba(230, 57, 70, 0.5); /* El borde se pinta rojo */
+    border-color: rgba(230, 57, 70, 0.5);
 }
 
 /* Imagen del platillo */
@@ -600,8 +615,8 @@ body.no-scroll {
     top: 0;
     right: -100%;
     width: 100%;
-    max-width: 420px; /* Ancho máximo ideal para cualquier smartphone moderno */
-    height: 100dvh; /* Altura dinámica real para evitar desbordes con las barras del navegador */
+    max-width: 420px;
+    height: 100dvh;
     background: rgba(18, 18, 18, 0.98);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -611,7 +626,7 @@ body.no-scroll {
     flex-direction: column;
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Garantiza suavidad en dispositivos iOS */
+    -webkit-overflow-scrolling: touch;
     padding: 20px 20px calc(25px + env(safe-area-inset-bottom)) 20px;
     box-sizing: border-box;
 }
@@ -634,7 +649,7 @@ body.no-scroll {
 }
 
 .cart-header h3 span {
-    font-family: 'Shojumaru', sans-serif; /* <--- Añade esta línea */
+    font-family: 'Shojumaru', sans-serif;
     color: var(--accent-red);
 }
 
@@ -749,7 +764,7 @@ body.no-scroll {
     width: 100%;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 15px 12px 42px; /* Espacio a la izquierda para el ícono */
+    padding: 12px 15px 12px 42px;
     border-radius: 12px;
     color: var(--text-light);
     font-size: 0.9rem;
@@ -772,7 +787,6 @@ body.no-scroll {
     background-size: 16px;
 }
 
-/* Asegurar que las opciones del select tengan fondo oscuro legible */
 .cart-select option {
     background-color: #121212;
     color: var(--text-light);
