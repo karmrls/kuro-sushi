@@ -463,8 +463,16 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    /* Se combinan las transiciones de scroll (0.8s) con tus transiciones de hover (0.3s) */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: opacity, transform;
+}
+
+.menu-card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .menu-card:hover {
@@ -479,6 +487,7 @@ body {
     height: 250px;
     object-fit: cover;
     border-bottom: 2px solid var(--accent-red);
+    border-radius: 15px 15px 0 0;
 }
 
 /* Información dentro de la tarjeta */

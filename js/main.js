@@ -26,17 +26,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. ANIMACIONES AL HACER SCROLL (Fade-in)
+   // 2. ANIMACIONES AL HACER SCROLL (Fade-in y Tarjetas del Menú)
+    
+    // Configuración compartida para los observadores
+    const observerOptions = {
+        root: null,
+        threshold: 0.15,
+        rootMargin: "0px"
+    };
+
+    // A) Elementos genéricos (Fade-in)
     const fadeElements = document.querySelectorAll('.fade-in');
-
     if (fadeElements.length > 0) {
-        const observerOptions = {
-            root: null,
-            threshold: 0.15,
-            rootMargin: "0px"
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
+        const fadeObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -44,8 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, observerOptions);
+        fadeElements.forEach(el => fadeObserver.observe(el));
+    }
 
-        fadeElements.forEach(el => observer.observe(el));
+    // B) Animación exclusiva para las tarjetas del menú (Entrada hacia arriba)
+    const menuCards = document.querySelectorAll('.menu-card');
+    if (menuCards.length > 0) {
+        const menuObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // Agrega la clase 'show' del CSS
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        menuCards.forEach(card => menuObserver.observe(card));
     }
 
     // 3. CARRITO DE COMPRAS Y CHECKOUT WHATSAPP
